@@ -33,9 +33,10 @@ datasource db {
 // ─────────────────────────────────────────────────────────────────────────
 
 enum PurchaseCodeSource {
-  IMPORTED  // pulled from CodeCanyon / Envato sales feed
+  IMPORTED  // pulled from Envato sales feed (legacy)
   MANUAL    // issued by admin via UI
   GRANT     // comped / promo — tracked separately from paid sales
+  WEBHOOK   // auto-issued by a payment provider webhook (Lemon Squeezy etc)
 }
 
 enum LicenseStatus {

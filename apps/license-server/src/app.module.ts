@@ -12,6 +12,7 @@ import { PurchaseCodeModule } from './purchase-code/purchase-code.module';
 import { AdminAuthModule } from './admin-auth/admin-auth.module';
 import { SigningKeyModule } from './signing-key/signing-key.module';
 import { HealthModule } from './health/health.module';
+import { WebhookModule } from './webhook/webhook.module';
 
 /**
  * Root module. Feature modules (product/purchase-code/license/admin-auth/
@@ -36,6 +37,7 @@ import { HealthModule } from './health/health.module';
     LicenseModule,
     ProductModule,
     PurchaseCodeModule,
+    WebhookModule,
     HealthModule,
   ],
 })
