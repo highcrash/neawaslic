@@ -12,7 +12,7 @@
  *
  *   const cfg = {
  *     baseUrl: process.env.LICENSE_SERVER_URL!,
- *     productSku: 'restora-pos-cc',
+ *     productSku: 'my-product-sku',
  *     publicKey: process.env.LICENSE_PUBLIC_KEY!,      // bundled at build
  *     publicKeyKid: process.env.LICENSE_PUBLIC_KEY_KID!,
  *     storage: fileStorage('/var/lib/yourapp/license.json'),

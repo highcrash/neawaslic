@@ -26,9 +26,9 @@ export interface PersistedState {
 }
 
 export interface LicenseClientConfig {
-  /** e.g. https://license.eatrobd.com/api/v1 — no trailing slash. */
+  /** e.g. https://license.example.com/api/v1 — no trailing slash. */
   baseUrl: string;
-  /** e.g. 'restora-pos-cc'. */
+  /** e.g. 'my-product-sku'. */
   productSku: string;
   /** Bundled at build time. base64url of the 32-byte raw ed25519 key. */
   publicKey: string;
