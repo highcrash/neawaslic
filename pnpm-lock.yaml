@@ -237,9 +237,6 @@ importers:
 
   packages/license-client:
     devDependencies:
-      '@restora/config':
-        specifier: workspace:*
-        version: link:../config
       '@types/jest':
         specifier: ^29.5.0
         version: 29.5.14
