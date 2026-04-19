@@ -58,12 +58,12 @@ admin.neawaslic.top {
 	}
 }
 
-neawaslic.top, www.neawaslic.top {
+neawaslic.top {
 	encode zstd gzip
 
 	# Apex serves the business / portfolio page — single-file static
-	# HTML at apps/business-site/index.html, copied into the Caddy
-	# container via the business-site docker-compose service.
+	# HTML at apps/business-site/index.html, mounted into the Caddy
+	# container at /srv/business by docker-compose.
 	root * /srv/business
 	try_files {path} /index.html
 	file_server
@@ -75,8 +75,11 @@ neawaslic.top, www.neawaslic.top {
 		Referrer-Policy "same-origin"
 		-Server
 	}
-
-	# Strip www → apex (single canonical URL for SEO).
-	@www host www.neawaslic.top
-	redir @www https://neawaslic.top{uri} permanent
 }
+
+# Uncomment once you add a www A/CNAME record at your registrar
+# pointing at 167.172.83.158 (or `CNAME neawaslic.top`). Without
+# this record, Let's Encrypt rejects the cert with NXDOMAIN.
+# www.neawaslic.top {
+# 	redir https://neawaslic.top{uri} permanent
+# }
