@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+Thumbs.db
+*.pem
+
+# Turbo
+.turbo/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TypeScript build artifacts leaked into src directories
+packages/*/src/**/*.js
+packages/*/src/**/*.js.map
+packages/*/src/**/*.d.ts
+packages/*/src/**/*.d.ts.map
+*.tsbuildinfo
+
+# License droplet runtime state
+infra/license-droplet/backups/
+infra/license-droplet/caddy-data/
+infra/license-droplet/caddy-config/
+
+# Claude Code local settings
+.claude/settings.local.json

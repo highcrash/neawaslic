@@ -1,0 +1,44 @@
+{
+  "name": "neawaslic",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Self-hosted license server stack for Restora POS (CodeCanyon edition) and future products. Deployed at neawaslic.top.",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:server": "turbo run dev --filter=@restora/license-server",
+    "dev:admin": "turbo run dev --filter=@restora/license-admin",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rimraf node_modules",
+    "db:generate": "pnpm --filter @restora/license-server exec prisma generate",
+    "db:migrate": "pnpm --filter @restora/license-server exec prisma migrate dev",
+    "db:migrate:prod": "pnpm --filter @restora/license-server exec prisma migrate deploy",
+    "db:studio": "pnpm --filter @restora/license-server exec prisma studio",
+    "infra:up": "docker compose -f infra/license-droplet/docker-compose.yml up -d --build",
+    "infra:down": "docker compose -f infra/license-droplet/docker-compose.yml down",
+    "infra:logs": "docker compose -f infra/license-droplet/docker-compose.yml logs -f"
+  },
+  "devDependencies": {
+    "@restora/config": "workspace:*",
+    "prettier": "^3.3.0",
+    "rimraf": "^6.0.0",
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.0"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "esbuild",
+      "msgpackr-extract",
+      "prisma"
+    ]
+  }
+}
