@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neawas — Self-hosted software for restaurants &amp; small business</title>
+    <meta name="description" content="We build self-hosted software — pay once, host it yourself, own your data. Current products: Restaurant POS. More on the way." />
+    <meta property="og:title" content="Neawas — Self-hosted software" />
+    <meta property="og:description" content="Pay once. Host it yourself. Own your data." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://neawaslic.top/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --ink: #0a0a0a;
+        --paper: #ffffff;
+        --bg: #fafafa;
+        --line: #e4e4e7;
+        --muted: #52525b;
+        --muted-2: #71717a;
+        --accent: #6366f1;
+        --accent-2: #8b5cf6;
+        --accent-lime: #a3e635;
+        --accent-green: #10b981;
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+        --shadow-lg: 0 20px 40px -12px rgba(0,0,0,0.18);
+      }
+      html { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--ink); background: var(--bg); scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+      body { line-height: 1.55; }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+      /* nav */
+      nav.top { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+      nav.top .inner { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; }
+      nav.top .logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+      nav.top .logo-mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); display: grid; place-items: center; color: white; font-weight: 900; font-size: 0.85rem; }
+      nav.top .links { display: flex; gap: 1.75rem; font-size: 0.93rem; font-weight: 500; color: var(--muted); }
+      nav.top .links a { color: inherit; text-decoration: none; transition: color 0.15s; }
+      nav.top .links a:hover { color: var(--ink); }
+      @media (max-width: 720px) { nav.top .links { display: none; } }
+
+      /* hero */
+      header.hero { position: relative; padding: 6rem 0 4rem; overflow: hidden; }
+      header.hero::before { content: ''; position: absolute; inset: 0; background:
+        radial-gradient(circle at 15% -10%, rgba(99,102,241,0.10), transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(139,92,246,0.08), transparent 50%);
+        pointer-events: none; }
+      .pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.85rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600; border: 1px solid var(--line); background: var(--paper); }
+      .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+      header.hero h1 { font-size: clamp(2.4rem, 5.5vw, 3.75rem); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; margin-top: 1.25rem; max-width: 22ch; }
+      header.hero h1 .grad { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+      header.hero p.lead { margin-top: 1.25rem; font-size: 1.15rem; color: var(--muted); max-width: 54ch; line-height: 1.55; }
+      .ctas { margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+      .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.4rem; text-decoration: none; font-weight: 600; border-radius: 10px; font-size: 0.93rem; border: 1px solid transparent; transition: transform 0.12s, box-shadow 0.2s; }
+      .btn-primary { background: var(--ink); color: var(--paper); box-shadow: var(--shadow-md); }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+      .btn-secondary { background: var(--paper); color: var(--ink); border-color: var(--line); }
+      .btn-secondary:hover { border-color: var(--ink); }
+
+      /* principles */
+      section { padding: 4rem 0; }
+      section h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.5rem; }
+      section .eyebrow { color: var(--accent); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+      section p.sub { font-size: 1rem; color: var(--muted); max-width: 58ch; margin-bottom: 2.5rem; }
+
+      .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      .principle { padding: 1.5rem; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+      .principle .icon { width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: #eef2ff; color: var(--accent); margin-bottom: 0.9rem; font-size: 1.1rem; }
+      .principle h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+      .principle p { font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
+
+      /* products */
+      .products { display: flex; flex-direction: column; gap: 1rem; }
+      .product { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; padding: 1.75rem 2rem; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; transition: border-color 0.15s, transform 0.12s; }
+      .product.available:hover { border-color: var(--accent); transform: translateY(-2px); }
+      .product.soon { opacity: 0.72; }
+      .product-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+      .product h3 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em; }
+      .product p { font-size: 0.95rem; color: var(--muted); margin: 0.3rem 0; }
+      .product-stack { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted-2); margin-top: 0.5rem; }
+      .status { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.55rem; border-radius: 100px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+      .status.live { background: #ecfdf5; color: var(--accent-green); }
+      .status.soon { background: #fef3c7; color: #c97a12; }
+      .status.planned { background: #f4f4f5; color: var(--muted); }
+      .product-cta { white-space: nowrap; }
+      @media (max-width: 640px) {
+        .product { grid-template-columns: 1fr; }
+        .product-cta { width: 100%; text-align: center; }
+      }
+
+      /* about */
+      .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+      @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+      .about-grid p { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+
+      /* contact */
+      .contact-box { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+      @media (max-width: 640px) { .contact-box { grid-template-columns: 1fr; } }
+      .contact-label { font-size: 0.75rem; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 0.3rem; }
+      .contact-value { font-size: 1rem; }
+      .contact-value a { color: var(--accent); text-decoration: none; }
+      .contact-value a:hover { text-decoration: underline; }
+
+      footer { padding: 2.5rem 0; border-top: 1px solid var(--line); color: var(--muted-2); font-size: 0.88rem; margin-top: 2rem; }
+      footer .inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+      footer a { color: var(--muted); text-decoration: none; }
+      footer a:hover { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+
+    <nav class="top">
+      <div class="wrap inner">
+        <a class="logo" href="/">
+          <div class="logo-mark">N</div>
+          <span>Neawas</span>
+        </a>
+        <div class="links">
+          <a href="#products">Products</a>
+          <a href="#principles">Why self-hosted</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn btn-primary" style="padding:0.55rem 1.1rem;font-size:0.85rem;" href="#products">View products →</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="wrap">
+        <span class="pill"><span class="dot"></span> Building software you own · 2026</span>
+        <h1>Self-hosted tools for <span class="grad">real businesses.</span></h1>
+        <p class="lead">
+          We build software you buy once, host yourself, and own your data on. No monthly SaaS fees,
+          no vendor lock-in, no "your data in our cloud." Just source code and sensible defaults.
+        </p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#products">See what we've shipped →</a>
+          <a class="btn btn-secondary" href="#contact">Talk to us</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="principles" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+      <div class="wrap">
+        <div class="eyebrow">How we build</div>
+        <h2>Four rules we don't break.</h2>
+        <p class="sub">Our customers run restaurants, shops, and other real-world businesses. These rules come from listening to them for years.</p>
+        <div class="principles">
+          <div class="principle">
+            <div class="icon">⚡</div>
+            <h3>Pay once, own it</h3>
+            <p>One-time license. No monthly SaaS tax on top of your hosting. Free updates for a year, then optional renewal.</p>
+          </div>
+          <div class="principle">
+            <div class="icon">🔑</div>
+            <h3>Your data stays yours</h3>
+            <p>Runs on your VPS, your cPanel, your laptop. We never see a single order, customer, or menu item.</p>
+          </div>
+          <div class="principle">
+            <div class="icon">📖</div>
+            <h3>Full source included</h3>
+            <p>TypeScript source for every product. Not minified, not obfuscated. Fork, modify, rebuild.</p>
+          </div>
+          <div class="principle">
+            <div class="icon">🔌</div>
+            <h3>Offline tolerant</h3>
+            <p>License checks once a day. 7-day grace window if the network drops. Your POS keeps ringing sales through outages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="wrap">
+        <div class="eyebrow">Products</div>
+        <h2>What we've shipped &amp; what's next.</h2>
+        <p class="sub">Current lineup + what's on the roadmap. Everything shares the same license server and payment flow — one account, any of our products.</p>
+
+        <div class="products">
+
+          <!-- Restaurant POS — live -->
+          <div class="product available">
+            <div>
+              <div class="product-meta">
+                <span class="status live">● Live</span>
+                <span style="font-size:0.78rem;color:var(--muted-2);font-family:'JetBrains Mono',monospace;">v1.0</span>
+              </div>
+              <h3>Restaurant POS</h3>
+              <p>Full-stack restaurant management — touch POS, kitchen display, QR self-order, inventory, multi-branch, and a public website. One zip, one backend, five apps.</p>
+              <div class="product-stack">TypeScript · NestJS · PostgreSQL · React · Docker / PM2</div>
+            </div>
+            <div class="product-cta">
+              <a class="btn btn-primary" href="https://github.com/highcrash/eatro/blob/codecanyon/docs/codecanyon-landing.html">Learn more →</a>
+            </div>
+          </div>
+
+          <!-- Inventory / small shop — placeholder -->
+          <div class="product soon">
+            <div>
+              <div class="product-meta">
+                <span class="status soon">◐ In development</span>
+              </div>
+              <h3>Small-shop Inventory &amp; POS</h3>
+              <p>A lighter sibling for retail shops that don't need a kitchen display — inventory, barcode scanning, supplier orders, loyalty, and a minimal register.</p>
+              <div class="product-stack">TypeScript · NestJS · PostgreSQL · React</div>
+            </div>
+            <div class="product-cta">
+              <a class="btn btn-secondary" href="#contact">Notify me</a>
+            </div>
+          </div>
+
+          <!-- Appointment / service business — placeholder -->
+          <div class="product soon">
+            <div>
+              <div class="product-meta">
+                <span class="status planned">○ Planned</span>
+              </div>
+              <h3>Appointments &amp; Services</h3>
+              <p>Self-hosted booking for salons, clinics, tutors, repair shops. Calendar per staff, customer reminders, deposits, invoicing.</p>
+              <div class="product-stack">Same stack — shared license server &amp; auth across products</div>
+            </div>
+            <div class="product-cta">
+              <a class="btn btn-secondary" href="#contact">Notify me</a>
+            </div>
+          </div>
+
+          <!-- Warehouse / fulfilment — placeholder -->
+          <div class="product soon">
+            <div>
+              <div class="product-meta">
+                <span class="status planned">○ Planned</span>
+              </div>
+              <h3>Warehouse &amp; Fulfillment</h3>
+              <p>For distributors + small-scale e-commerce: pick lists, packing slips, multi-warehouse stock, barcoded bins, shipping integrations.</p>
+              <div class="product-stack">Same stack — optional POS integration</div>
+            </div>
+            <div class="product-cta">
+              <a class="btn btn-secondary" href="#contact">Notify me</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+      <div class="wrap">
+        <div class="eyebrow">About</div>
+        <h2>Small team. Long game.</h2>
+        <div class="about-grid">
+          <div>
+            <p>
+              Neawas is an independent software studio focused on self-hosted tools for the businesses
+              that keep their neighborhood running — restaurants, shops, service providers, small
+              distributors. We don't chase enterprise contracts. We ship products that pay for
+              themselves in a month and keep working for years.
+            </p>
+            <p>
+              Every product we ship uses the same license server, same payment flow, and the same
+              engineering principles. If you buy two of our products, you manage both from one
+              place.
+            </p>
+          </div>
+          <div>
+            <p>
+              <strong>How we're different:</strong> we don't take a cut of your revenue (no SaaS fee),
+              we don't rent you your data (it's on your server), and we don't end-of-life products
+              (source is included — you can maintain a fork yourself if we go quiet).
+            </p>
+            <p>
+              <strong>Support model:</strong> email + Slack. One-time buyers get 12 months of
+              updates and email support; recurring-tier customers (multi-tenant SaaS resellers) get
+              priority and a direct channel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="eyebrow">Contact</div>
+        <h2>Get in touch.</h2>
+        <p class="sub">Pre-sales questions, custom work, or a heads-up on the next product? Drop a line.</p>
+        <div class="contact-box">
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:hello@neawaslic.top">hello@neawaslic.top</a></div>
+          </div>
+          <div>
+            <div class="contact-label">License management</div>
+            <div class="contact-value"><a href="https://admin.neawaslic.top">admin.neawaslic.top</a> (existing customers)</div>
+          </div>
+          <div>
+            <div class="contact-label">Working hours</div>
+            <div class="contact-value">Mon–Fri, typical reply within 24h</div>
+          </div>
+          <div>
+            <div class="contact-label">Partnership / custom dev</div>
+            <div class="contact-value"><a href="mailto:partners@neawaslic.top">partners@neawaslic.top</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap inner">
+        <div>© 2026 Neawas. Self-hosted software, built to outlast us.</div>
+        <div>
+          <a href="#products">Products</a> ·
+          <a href="https://admin.neawaslic.top">Customer portal</a> ·
+          <a href="mailto:hello@neawaslic.top">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

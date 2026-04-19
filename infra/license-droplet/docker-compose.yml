@@ -26,6 +26,11 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
       - caddy-config:/config
+      # Business / portfolio page served at the apex (neawaslic.top).
+      # Mounted read-only into Caddy — single-file static HTML, no
+      # separate server needed. Edit + restart Caddy to publish
+      # changes without redeploying any other container.
+      - ../../apps/business-site:/srv/business:ro
     depends_on:
       - license-server
       - license-admin

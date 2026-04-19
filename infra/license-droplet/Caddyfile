@@ -6,9 +6,10 @@
 # validation will fail and we'll hit rate limits retrying.
 #
 # Hostnames:
+#   neawaslic.top        → business-site (static, /srv/business)  (apex marketing)
+#   www.neawaslic.top    → 301 → neawaslic.top
 #   api.neawaslic.top    → license-server:3002  (public license API)
-#   admin.neawaslic.top  → license-admin:80     (Vite admin SPA)
-#   neawaslic.top        → 301 → admin.neawaslic.top  (apex lands on UI)
+#   admin.neawaslic.top  → license-admin:80     (Vite admin SPA for customers)
 
 api.neawaslic.top {
 	encode zstd gzip
@@ -57,6 +58,25 @@ admin.neawaslic.top {
 	}
 }
 
-neawaslic.top {
-	redir https://admin.neawaslic.top{uri} permanent
+neawaslic.top, www.neawaslic.top {
+	encode zstd gzip
+
+	# Apex serves the business / portfolio page — single-file static
+	# HTML at apps/business-site/index.html, copied into the Caddy
+	# container via the business-site docker-compose service.
+	root * /srv/business
+	try_files {path} /index.html
+	file_server
+
+	# Helmet-style headers on the marketing page too.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "same-origin"
+		-Server
+	}
+
+	# Strip www → apex (single canonical URL for SEO).
+	@www host www.neawaslic.top
+	redir @www https://neawaslic.top{uri} permanent
 }
